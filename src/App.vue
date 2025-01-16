@@ -1,22 +1,30 @@
 <template>
   <main class="wrapp">
-    <splashScreen />
-    <headerComp />
-    <RouterView />
-    <footerComp />
+    <div v-if="this.$route.name == 'Login'">
+      <LoginPage />
+    </div>
+    <div v-else>
+      <splashScreen />
+      <headerComp />
+      <RouterView />
+      <footerComp />
+    </div>
   </main>
 </template>
 <script>
 import headerComp from "./components/Layouts/Header.vue";
 import footerComp from "./components/Layouts/Footer.vue";
 import splashScreen from "./components/Layouts/Splash.vue";
+import LoginPage from "./components/page/Login.vue";
 export default {
   name: "APP",
   components: {
     headerComp,
     footerComp,
     splashScreen,
+    LoginPage,
   },
+  mounted() {},
 };
 </script>
 <style>
