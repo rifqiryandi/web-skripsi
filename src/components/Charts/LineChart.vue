@@ -44,8 +44,7 @@ export default {
     }
   },
   watch: {
-    dataChart: function() {
-      // this._chart.destroy();
+    dataChart: function() {      
       this.renderLineChart();
     }
   },
@@ -106,7 +105,7 @@ export default {
       };
     },
   },
-  mounted() {
+  mounted() {    
     this.renderLineChart();
   },
 };
