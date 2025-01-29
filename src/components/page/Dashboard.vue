@@ -216,11 +216,15 @@
         <div class="flex gap-2">
           <div v-if="persenImprove.includes('-')">
             <img src="../../assets/down.png" alt="" width="24px" />
-            <p class="roboto text-lg">-{{persenImprove}} Down since last month</p>
+            <p class="roboto text-lg">
+              -{{ persenImprove }} Down since last month
+            </p>
           </div>
           <div v-else>
             <img src="../../assets/up.png" alt="" width="24px" />
-            <p class="roboto text-lg">{{persenImprove}} Up since last month</p>
+            <p class="roboto text-lg">
+              {{ persenImprove }} Up since last month
+            </p>
           </div>
         </div>
 
@@ -381,7 +385,7 @@ export default {
         dataChartTop: [],
         labelChartTop: [],
       },
-      persenImprove : "0%"
+      persenImprove: "0%",
     };
   },
   components: {
@@ -512,6 +516,11 @@ export default {
         // get Data Nps
         let requestService = await reportNpsService.getReportNps(params);
         let result = requestService.data;
+        // get Data sentiment
+        let requestServiceSen = await reportNpsService.getReportSentiment(
+          params
+        );
+        let resultSen = requestServiceSen.data;
         this.PersenQuartal = result.PersenQuartal;
         // Bar Chart
         this.ChartNpsScore(result);
@@ -522,11 +531,6 @@ export default {
         // Bar Chart Responden
         this.ChartResponden(result);
 
-        // get Data sentiment
-        let requestServiceSen = await reportNpsService.getReportSentiment(
-          params
-        );
-        let resultSen = requestServiceSen.data;
         // card jumlah positive dan negative
         this.jumlahPositive = resultSen.Data.jumlahPositive;
         this.jumlahNegative = resultSen.Data.jumlahNegative;
@@ -542,7 +546,7 @@ export default {
         // card review topic
         this.ChartReviewTopic(resultSen.Data);
 
-        this.persenImprove = resultSen.Data.persenImprove
+        this.persenImprove = resultSen.Data.persenImprove;
         this.$swal.close();
       } catch (error) {
         this.feedbackRow = null;
